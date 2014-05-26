@@ -23,5 +23,5 @@ class MainWindow(QDialog):
     @Slot()
     def clickedNewButton(self):
         self.addWindowObj = AddWindow()
-        self.addWindowObj.show()
+        self.addWindowObj.initUi()
         print("ClickedNewButton")

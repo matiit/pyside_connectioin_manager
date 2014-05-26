@@ -1,4 +1,4 @@
-from PySide.QtGui import *
+from PySide.QtGui import QGridLayout, QDialog, QLabel, QLineEdit, QSpinBox
 from PySide import QtCore
 
 
@@ -6,3 +6,28 @@ class AddWindow(QDialog):
     def __init__(self, parent=None):
         super(AddWindow, self).__init__(parent)
         self.setGeometry(QtCore.QRect(110, 40, 171, 160))
+
+    def initUi(self):
+        self.grid = QGridLayout()
+        self.grid.addWidget(QLabel("Connection name"), 0, 0)
+        self.grid.addWidget(QLabel("Username"), 2, 0)
+        self.grid.addWidget(QLabel("Password"), 4, 0)
+        self.grid.addWidget(QLabel("Hostname"), 6, 0)
+        self.grid.addWidget(QLabel("Port"), 8, 0)
+        self.connectionNameInput =  QLineEdit(self)
+        self.grid.addWidget(self.connectionNameInput, 1, 0)
+        self.userNameInput =  QLineEdit(self)
+        self.grid.addWidget(self.userNameInput, 3, 0)
+        self.passwordInput =  QLineEdit(self)
+        self.grid.addWidget(self.passwordInput, 5, 0)
+        self.hostnameInput =  QLineEdit(self)
+        self.grid.addWidget(self.hostnameInput, 7, 0)
+        self.portSpinBox =  QSpinBox(self)
+        self.portSpinBox.setMinimum(1)
+        self.portSpinBox.setMaximum(65535)
+        self.portSpinBox.setValue(22)
+        self.grid.addWidget(self.portSpinBox, 9, 0)
+
+        self.setLayout(self.grid)
+
+        self.show()
