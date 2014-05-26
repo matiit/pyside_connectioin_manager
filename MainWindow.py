@@ -1,5 +1,3 @@
-import PySide
-
 from PySide.QtGui import *
 from PySide.QtCore import Slot
 from AddWindow import AddWindow
