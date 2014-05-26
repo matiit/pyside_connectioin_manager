@@ -2,6 +2,7 @@ import PySide
 
 from PySide.QtGui import *
 from PySide.QtCore import Slot
+from AddWindow import AddWindow
 
 
 class MainWindow(QDialog):
@@ -21,4 +22,6 @@ class MainWindow(QDialog):
 
     @Slot()
     def clickedNewButton(self):
+        self.addWindowObj = AddWindow()
+        self.addWindowObj.show()
         print("ClickedNewButton")
