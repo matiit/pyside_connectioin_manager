@@ -1,6 +1,5 @@
 import sys
 
-import PySide
 from PySide.QtGui import QApplication
 
 from MainWindow import MainWindow
