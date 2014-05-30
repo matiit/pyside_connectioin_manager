@@ -1,5 +1,7 @@
-from PySide.QtGui import QGridLayout, QDialog, QLabel, QLineEdit, QSpinBox
+from PySide.QtGui import QGridLayout, QDialog, QLabel, QLineEdit, QSpinBox, QPushButton
 from PySide import QtCore
+from PySide.QtCore import Slot
+from DataRepository import *
 
 
 class AddWindow(QDialog):
@@ -27,7 +29,27 @@ class AddWindow(QDialog):
         self.portSpinBox.setMaximum(65535)
         self.portSpinBox.setValue(22)
         self.grid.addWidget(self.portSpinBox, 9, 0)
-
+        self.addButton = QPushButton("Accept")
+        self.grid.addWidget(self.addButton, 10, 0)
         self.setLayout(self.grid)
 
+        self.addButton.clicked.connect(self.clickedAddButton)
+
         self.show()
+
+    @Slot()
+    def clickedAddButton(self):
+        dataRep = DataRepository()
+        host = self.hostnameInput.text()
+        port = self.portSpinBox.value()
+        pwd = self.passwordInput.text()
+        login = self.userNameInput.text()
+        name = self.connectionNameInput.text()
+        dataRep.addConnection({
+            'host':host,
+            'port':port,
+            'pwd':pwd,
+            'login':login,
+            'name':name
+        })
+        self.close()
