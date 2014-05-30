@@ -1,14 +1,18 @@
 from PySide.QtGui import *
 from PySide.QtCore import Slot
 from AddWindow import AddWindow
+from DataRepository import DataRepository
 
 
 class MainWindow(QDialog):
+
+    # List of all connections
+    data = []
+
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.newButton = QPushButton("Add new connection")
         self.listWidget = QListWidget(self)
-        self.listWidget.addItem("Item_1")
 
         self.grid = QGridLayout()
         self.grid.addWidget(self.newButton, 0, 0)
@@ -17,11 +21,25 @@ class MainWindow(QDialog):
         self.setLayout(self.grid)
 
         self.newButton.clicked.connect(self.clickedNewButton)
-
+        self.getData()
+        self.addDataToList()
 
     def closeEvent(self, event):
-        self.addWindowObj.close()
-        event.accept()
+        try:
+            self.addWindowObj.close()
+        except AttributeError:
+            pass
+        finally:
+            event.accept()
+
+    def getData(self):
+        dataRep = DataRepository()
+        self.data = dataRep.getConnectionsArray()
+        print(self.data)
+
+    def addDataToList(self):
+        for connRow in self.data:
+            self.listWidget.addItem(connRow['name'])
 
     @Slot()
     def clickedNewButton(self):

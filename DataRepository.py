@@ -8,7 +8,23 @@ class DataRepository():
         login = data['login']
         name = data['name']
 
-        stringToSave = '|'.join([login,host,port,pwd,name])
+        stringToSave = '|'.join([login, host, port, pwd, name])
 
         with open(self.configFile, "a") as f:
-            f.writelines([stringToSave])
+            f.write(stringToSave)
+
+    def getConnectionsArray(self):
+        with open(self.configFile) as file:
+            lines = file.readlines()
+
+        result = []
+        for line in lines:
+            lineArr = line.split('|')
+            connectionRow = {}
+            connectionRow['login'] = lineArr[0]
+            connectionRow['host'] = lineArr[1]
+            connectionRow['port'] = lineArr[2]
+            connectionRow['pwd'] = lineArr[3]
+            connectionRow['name'] = lineArr[4]
+            result.append(connectionRow)
+        return result
