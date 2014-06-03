@@ -3,7 +3,6 @@ from PySide import QtCore
 from PySide.QtCore import Slot
 from DataRepository import *
 
-
 class AddWindow(QDialog):
     def __init__(self, parent=None):
         super(AddWindow, self).__init__(parent)
@@ -53,3 +52,11 @@ class AddWindow(QDialog):
             'name':name
         })
         self.close()
+
+    # def closeEvent(self, event):
+    #     try:
+    #         print ("closing addWindow")
+    #     except AttributeError:
+    #         pass
+    #     finally:
+    #         event.accept()

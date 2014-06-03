@@ -11,7 +11,7 @@ class DataRepository():
         stringToSave = '|'.join([login, host, port, pwd, name])
 
         with open(self.configFile, "a") as f:
-            f.write(stringToSave)
+            f.write(stringToSave + '|\n')
 
     def getConnectionsArray(self):
         with open(self.configFile) as file:

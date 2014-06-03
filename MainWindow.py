@@ -38,6 +38,7 @@ class MainWindow(QDialog):
         print(self.data)
 
     def addDataToList(self):
+        self.listWidget.clear()
         for connRow in self.data:
             self.listWidget.addItem(connRow['name'])
 
@@ -45,3 +46,9 @@ class MainWindow(QDialog):
     def clickedNewButton(self):
         self.addWindowObj = AddWindow()
         self.addWindowObj.initUi()
+        self.addWindowObj.finished.connect(self.onAddFinish)
+
+    @Slot()
+    def onAddFinish(self):
+        print("Test")
+        self.addDataToList()
