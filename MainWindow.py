@@ -21,15 +21,8 @@ class MainWindow(QDialog):
         self.setLayout(self.grid)
 
         self.newButton.clicked.connect(self.clickedNewButton)
+        self.listWidget.itemDoubleClicked.connect(self.onListItemClicked)
         self.addDataToList()
-
-    # def closeEvent(self, event):
-    #     try:
-    #         self.addWindowObj.close()
-    #     except AttributeError:
-    #         pass
-    #     finally:
-    #         event.accept()
 
     def getData(self):
         dataRep = DataRepository()
@@ -51,3 +44,7 @@ class MainWindow(QDialog):
     def onAddFinish(self):
         self.addDataToList()
         print("onAddFinish")
+
+    @Slot()
+    def onListItemClicked(self):
+        print("ITEM CLICKED")
