@@ -46,9 +46,9 @@ class MainWindow(QDialog):
     def clickedNewButton(self):
         self.addWindowObj = AddWindow()
         self.addWindowObj.initUi()
-        self.addWindowObj.finished.connect(self.onAddFinish)
+        self.addWindowObj.accepted.connect(self.onAddFinish)
 
     @Slot()
     def onAddFinish(self):
-        print("Test")
         self.addDataToList()
+        print("onAddFinish")

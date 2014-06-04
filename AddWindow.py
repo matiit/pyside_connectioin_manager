@@ -51,12 +51,8 @@ class AddWindow(QDialog):
             'login':login,
             'name':name
         })
+        self.accept()
         self.close()
 
-    # def closeEvent(self, event):
-    #     try:
-    #         print ("closing addWindow")
-    #     except AttributeError:
-    #         pass
-    #     finally:
-    #         event.accept()
+    def closeEvent(self, event):
+            event.accept()
