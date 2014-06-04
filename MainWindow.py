@@ -1,6 +1,7 @@
 from PySide.QtGui import *
 from PySide.QtCore import Slot
 from AddWindow import AddWindow
+from ConectionRunner import ConnectionRunner
 from DataRepository import DataRepository
 
 
@@ -46,5 +47,14 @@ class MainWindow(QDialog):
         print("onAddFinish")
 
     @Slot()
-    def onListItemClicked(self):
-        print("ITEM CLICKED")
+    def onListItemClicked(self, item):
+        credentials = self.getCredentialsFromData(item.text())
+        cr = ConnectionRunner(credentials)
+        cr.run()
+
+    def getCredentialsFromData(self, text):
+        for connection in self.data:
+            if connection['name'] == text:
+                return connection
+
+        return None
