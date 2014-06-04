@@ -30,13 +30,6 @@ class ConnectionRunner:
                             "use Debian like OS")
 
     def run(self):
-        #  dataRep = DataRepository()
-        # host = self.hostnameInput.text()
-        # port = self.portSpinBox.value()
-        # pwd = self.passwordInput.text()
-        # login = self.userNameInput.text()
-        # name = self.connectionNameInput.text()
-
         executableConnectionString = self.buildExecutableConnectionString()
 
         os.systen('terminator -e \'' + executableConnectionString + '\'')
