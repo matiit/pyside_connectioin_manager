@@ -1,2 +1,5 @@
 .ropeproject/
+.idea/
+*~
 config.txt
+__pycache__/
