@@ -21,30 +21,29 @@ class MainWindow(QDialog):
         self.setLayout(self.grid)
 
         self.newButton.clicked.connect(self.clickedNewButton)
-        self.getData()
         self.addDataToList()
 
-    def closeEvent(self, event):
-        try:
-            self.addWindowObj.close()
-        except AttributeError:
-            pass
-        finally:
-            event.accept()
+    # def closeEvent(self, event):
+    #     try:
+    #         self.addWindowObj.close()
+    #     except AttributeError:
+    #         pass
+    #     finally:
+    #         event.accept()
 
     def getData(self):
         dataRep = DataRepository()
         self.data = dataRep.getConnectionsArray()
-        print(self.data)
 
     def addDataToList(self):
+        self.getData()
         self.listWidget.clear()
         for connRow in self.data:
             self.listWidget.addItem(connRow['name'])
 
     @Slot()
     def clickedNewButton(self):
-        self.addWindowObj = AddWindow()
+        self.addWindowObj = AddWindow(self)
         self.addWindowObj.initUi()
         self.addWindowObj.accepted.connect(self.onAddFinish)
 
